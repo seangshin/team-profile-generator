@@ -1,7 +1,6 @@
 //Packages required for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -25,6 +24,18 @@ var globalhtml = `<!DOCTYPE html>
 function init() {
   getManager();
 } init();
+
+function generateHTML() {
+  globalhtml = globalhtml + `</div>
+  </div>
+  
+</body>
+</html>`;
+
+  fs.writeFile("index1.html", globalhtml, (err) => {
+    err ? console.log(err) :console.log('Successfully created index.html!')
+  });
+}
 
 //**Prompt user for their team members and information
 //**Generate HTML file based on user input
@@ -90,8 +101,7 @@ function optionMenu () {
     } else if (result.option === "Add intern") {
       getIntern();
     } else if (result.option === "Finish building team") {
-      console.log(globalhtml);
-      return;
+      generateHTML();
     }
     
   })
