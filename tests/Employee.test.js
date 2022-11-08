@@ -43,4 +43,16 @@ describe("Employee", () => {
             expect(email).toEqual(objEmail);
         });
     });
+
+    describe("getRole", () => {
+        it("returns a string describing the class", () => {
+            const name = "ExampleName";
+            const id = "ExampleID";
+            const email = "ExampleEmail";
+            const string = "Employee"
+            const obj = new Employee(name, id, email).getRole();
+
+            expect(obj).toEqual(string);
+        });
+    });
 });
