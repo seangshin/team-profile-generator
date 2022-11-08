@@ -18,8 +18,7 @@ var globalhtml = `<!DOCTYPE html>
 <body class="container-fluid">
   <header class="jumbotron text-center display-4">My Team</header>
   
-  <div class="row">
-    <div class="col-12 col-md-6 col-lg-6">`
+  <div class="row d-flex justify-content-center">`
 
 function init() {
   getManager();
@@ -32,7 +31,7 @@ function generateHTML() {
 </body>
 </html>`;
 
-  fs.writeFile("index1.html", globalhtml, (err) => {
+  fs.writeFile("./dist/index.html", globalhtml, (err) => {
     err ? console.log(err) :console.log('Successfully created index.html!')
   });
 }
@@ -68,16 +67,12 @@ function getManager() {
   //for a resolved promise, pass in the answers (object) given by prompt
   .then((answers) => {
     const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);//declares output and stores string (template literal) from generateREADME function
-    console.log(manager.getRole());
-    addManager(manager, globalhtml);
+    const description = "Office Number";
+    const attribute = answers.officeNumber;
+    addCard(manager, globalhtml, manager.getRole(), description, attribute);
     //console.log(manager);
     optionMenu();
-    /*
-    //Create/write to file "README.md" by passing in string (template literal) stored in output
-    fs.writeFile("README.md", output, (error) =>
-      error ? console.log(error) : console.log ("README.md file generated!")
-    );
-    */
+    
   })
   //for a rejected promise, output an error
   .catch((error) => console.error(error));
@@ -135,8 +130,9 @@ function getEngineer() {
   //for a resolved promise, pass in the answers (object) given by prompt
   .then((answers) => {
     const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);//declares output and stores string (template literal) from generateREADME function
-    console.log(engineer.getRole());
-    addEngineer(engineer, globalhtml);
+    const description = "GitHub";
+    const attribute = answers.github;
+    addCard(engineer, globalhtml, engineer.getRole(), description, attribute);
     optionMenu();
   })
   //for a rejected promise, output an error
@@ -170,49 +166,26 @@ function getIntern() {
   //for a resolved promise, pass in the answers (object) given by prompt
   .then((answers) => {
     const intern = new Intern(answers.name, answers.id, answers.email, answers.school);//declares output and stores string (template literal) from generateREADME function
-    console.log(intern.getRole());
-    addIntern(intern, globalhtml);
+    const description = "School";
+    const attribute = answers.school;
+    addCard(intern, globalhtml, intern.getRole(), description, attribute);
     optionMenu();
   })
   //for a rejected promise, output an error
   .catch((error) => console.error(error));
 }
 
-const addManager = ({name, id, email, officeNumber}, html) => 
-  globalhtml = html + `<div class="card border-secondary mb-3" style="max-width: 18rem;">
-  <div class="card-header">
-    <p id="name">${name}</p>
-    <p id="title">Manager</p>
-  </div>
-  <div class="card-body text-secondary">
-    <p class="card-text">ID: ${id}</p>
-    <p class="card-text">Email: ${email}</p>
-    <p class="card-text">Office Number: ${officeNumber}</p>
-  </div>
-</div>`;
-
-const addEngineer = ({name, id, email, github}, html) => 
-  globalhtml = html + `<div class="card border-secondary mb-3" style="max-width: 18rem;">
-  <div class="card-header">
-    <p id="name">${name}</p>
-    <p id="title">Engineer</p>
-  </div>
-  <div class="card-body text-secondary">
-    <p class="card-text">ID: ${id}</p>
-    <p class="card-text">Email: ${email}</p>
-    <p class="card-text">GitHub: ${github}</p>
-  </div>
-</div>`;
-
-const addIntern = ({name, id, email, school}, html) => 
-  globalhtml = html + `<div class="card border-secondary mb-3" style="max-width: 18rem;">
-  <div class="card-header">
-    <p id="name">${name}</p>
-    <p id="title">Intern</p>
-  </div>
-  <div class="card-body text-secondary">
-    <p class="card-text">ID: ${id}</p>
-    <p class="card-text">Email: ${email}</p>
-    <p class="card-text">School: ${school}</p>
+const addCard = ({name, id, email}, html, role, description, attribute) => 
+  globalhtml = html + `<div class="mx-auto">
+  <div class="card bg-light mb-3" style="width: 18rem;">
+    <div class="card-header">
+      <h1 class="card-title">${name}</h1>
+      <p id="title">${role}</p>
+    </div>
+    <div class="card-body text-secondary">
+      <p class="card-text">ID: ${id}</p>
+      <p class="card-text">Email: ${email}</p>
+      <p class="card-text">${description}: ${attribute}</p>
+    </div>
   </div>
 </div>`;
