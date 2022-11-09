@@ -131,7 +131,7 @@ function getEngineer() {
   .then((answers) => {
     const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);//declares output and stores string (template literal) from generateREADME function
     const description = "GitHub";
-    const attribute = answers.github;
+    const attribute = `<a href="https://github.com/${answers.github}">${answers.github}</a>`;
     addCard(engineer, globalhtml, engineer.getRole(), description, attribute);
     optionMenu();
   })
@@ -184,7 +184,7 @@ const addCard = ({name, id, email}, html, role, description, attribute) =>
     </div>
     <div class="card-body text-secondary">
       <p class="card-text">ID: ${id}</p>
-      <p class="card-text">Email: ${email}</p>
+      <p class="card-text">Email: <a href="mailto:${email}">${email}</a></p>
       <p class="card-text">${description}: ${attribute}</p>
     </div>
   </div>
