@@ -2,7 +2,7 @@
 
 ## Description
 
-The motivation of this project is to build a node.js command-line application that takes in information about employees and generates an HTML webpage that displays information for each person. The focus of this project is to use object oriented programming techniques such as classes and constructors to build reusable objects. The application is powered by node.js and npm to organize the packages/applications the project depends on. The inquirer package is used to prompt and store user inputs, which are then used to create new class instances. The information collected is then compiled into an HTML file to display the team. The application features TDD (Test Driven Development) concepts and implements Jest to perform unit testing for each class.
+The motivation of this project is to build a node.js command-line application that takes in information about employees and generates an HTML webpage that displays information for each person. The focus of this project is to use object oriented programming techniques such as classes and constructors to build reusable objects. The application is powered by node.js and npm to organize the packages/applications the project depends on. The inquirer package is used to prompt and store user inputs, which are then used to create new class instances. The concept of modularity is applied by creating subclasses of the parent class. The information collected is then compiled into an HTML file to display the team. The application features TDD (Test Driven Development) concepts and implements Jest to perform unit testing for each class.
 
 ![](screenshot.JPG)
 Link to download walkthrough video: https://github.com/seangshin/team-profile-generator/blob/main/walkthrough.webm
